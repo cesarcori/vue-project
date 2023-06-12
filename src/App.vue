@@ -18,14 +18,12 @@
 <template>
   <h1>{{ header }}</h1>
   <input v-model.trim="newItem2" type="text" placeholder="Add an Item">
-  Priority: 
   <label>
-    <input type="radio" v-model="newItemPriority" value="low">
-    Low
-  </label>
-  <label>
-    <input type="radio" v-model="newItemPriority" value="high">
-    High 
+    Priority: 
+    <select v-model="newItemPriority">
+      <option value="low">Low</option>
+      <option value="high">High</option>
+    </select>
   </label>
   <br />
   {{newItemPriority}}
