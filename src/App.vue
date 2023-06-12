@@ -12,6 +12,7 @@
   const newItem = ref("")
   const newItem2 = ref("")
   const newItemHighPriority = ref(false)
+  const iceCreamFlavors = ref([])
 
 </script>
 
@@ -23,7 +24,20 @@
     High Priority
   </label>
   <br />
-  {{newItemHighPriority}}
+  <label>
+    <input type="checkbox" value="vanilla" v-model="iceCreamFlavors">
+    Vanilla
+  </label>
+  <label>
+    <input type="checkbox" value="chocolate" v-model="iceCreamFlavors">
+    Chocolate 
+  </label>
+  <label>
+    <input type="checkbox" value="strawberry" v-model="iceCreamFlavors">
+    Strawberry 
+  </label>
+  <br />
+  {{iceCreamFlavors}}
   <ul>
     <li v-for="({id, label}, index) in items" :key="id">
       {{label}}
