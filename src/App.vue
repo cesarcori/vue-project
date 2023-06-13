@@ -19,7 +19,12 @@
 <template>
   <h1>{{ header }}</h1>
   <div class="add-item-form">
-    <input v-model.trim="newItem" type="text" placeholder="Add an Item">
+    <input 
+      v-model.trim="newItem" 
+      v-on:keyup.enter="items.push({id: items.length + 1, label: newItem})"
+      type="text" 
+      placeholder="Add an Item"
+    >
     <label>
       <input type="checkbox" v-model="newItemHighPriority">
       High Priority
