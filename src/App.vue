@@ -18,26 +18,19 @@
 
 <template>
   <h1>{{ header }}</h1>
-  <input v-model.trim="newItem2" type="text" placeholder="Add an Item">
-  <label>
-    <input type="checkbox" v-model="newItemHighPriority">
-    High Priority
-  </label>
-  <br />
-  <label>
-    <input type="checkbox" value="vanilla" v-model="iceCreamFlavors">
-    Vanilla
-  </label>
-  <label>
-    <input type="checkbox" value="chocolate" v-model="iceCreamFlavors">
-    Chocolate 
-  </label>
-  <label>
-    <input type="checkbox" value="strawberry" v-model="iceCreamFlavors">
-    Strawberry 
-  </label>
-  <br />
-  {{iceCreamFlavors}}
+  <div class="add-item-form">
+    <input v-model.trim="newItem" type="text" placeholder="Add an Item">
+    <label>
+      <input type="checkbox" v-model="newItemHighPriority">
+      High Priority
+    </label>
+    <botton 
+      v-on:click="items.push({id: items.length + 1, label: newItem})" 
+      class="btn btn-primary"
+    >
+      Save Item
+    </botton>
+  </div>
   <ul>
     <li v-for="({id, label}, index) in items" :key="id">
       {{label}}
