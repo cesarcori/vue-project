@@ -18,10 +18,12 @@
 
 <template>
   <h1>{{ header }}</h1>
-  <div class="add-item-form">
+  <form
+    class="add-item-form"
+    v-on:submit.prevent="items.push({id: items.length + 1, label: newItem})"  
+  >
     <input 
       v-model.trim="newItem" 
-      v-on:keyup.enter="items.push({id: items.length + 1, label: newItem})"
       type="text" 
       placeholder="Add an Item"
     >
@@ -30,12 +32,11 @@
       High Priority
     </label>
     <botton 
-      v-on:click="items.push({id: items.length + 1, label: newItem})" 
       class="btn btn-primary"
     >
       Save Item
     </botton>
-  </div>
+  </form>
   <ul>
     <li v-for="({id, label}, index) in items" :key="id">
       {{label}}
