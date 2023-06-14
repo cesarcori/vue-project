@@ -2,17 +2,17 @@
   import { ref } from 'vue'
 
   const header = ref('Shopping List App')
-
   const items = ref([
   {id: 1, label: "10 party hats"},
   {id: 2, label: "2 board games"},
   {id: 3, label: "20 cups"}
   ])
-
   const newItem = ref("")
-  const newItem2 = ref("")
   const newItemHighPriority = ref(false)
-  const iceCreamFlavors = ref([])
+  const saveItem = () => {
+    items.value.push({id: items.value.length + 1, label: newItem.value})
+    newItem.value = ""
+  }
 
 </script>
 
@@ -20,7 +20,7 @@
   <h1>{{ header }}</h1>
   <form
     class="add-item-form"
-    @submit.prevent="items.push({id: items.length + 1, label: newItem})"  
+    @submit.prevent="saveItem"  
   >
     <input 
       v-model.trim="newItem" 
