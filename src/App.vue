@@ -31,7 +31,6 @@
       Add Item 
     </button>
   </div>
-  <a v-bind:href="newItem">Dynamic Link</a>
   <form
     class="add-item-form"
     v-if="editing"
@@ -46,11 +45,12 @@
       <input type="checkbox" v-model="newItemHighPriority">
       High Priority
     </label>
-    <botton 
+    <button
+      v-bind:disabled="newItem.length === 0"
       class="btn btn-primary"
     >
       Save Item
-    </botton>
+    </button>
   </form>
   <ul>
     <li v-for="({id, label}, index) in items" :key="id">
