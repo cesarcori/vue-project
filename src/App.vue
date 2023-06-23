@@ -31,6 +31,7 @@
       Add Item 
     </button>
   </div>
+  <a v-bind:href="newItem">Dynamic Link</a>
   <form
     class="add-item-form"
     v-if="editing"
