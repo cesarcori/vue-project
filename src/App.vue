@@ -46,7 +46,7 @@
       High Priority
     </label>
     <button
-      v-bind:disabled="newItem.length === 0"
+      :disabled="newItem.length < 5"
       class="btn btn-primary"
     >
       Save Item
