@@ -92,6 +92,18 @@
     >
       {{label}}
     </li>
+
+    <li 
+      v-for="({id, label, purchased, highPriority}, index) in items" 
+      :key="id"
+      class="static-class"
+      :class="[ 
+        {strikeout: purchased},
+        {priority: highPriority}
+      ]"
+    >
+      {{label}}
+    </li>
   </ul>
   <p v-if="!items.length">
     Nothing to see here
