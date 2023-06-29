@@ -85,7 +85,10 @@
       v-for="({id, label, purchased, highPriority}, index) in items" 
       :key="id"
       class="static-class"
-      :class="[ 'strikeout', 'priority' ]"
+      :class="[ 
+        purchased ? 'strikeout text-gray' : 'underline',
+        highPriority ? 'priority' : '' 
+      ]"
     >
       {{label}}
     </li>
