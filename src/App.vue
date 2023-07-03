@@ -2,8 +2,8 @@
   import { ref, computed } from 'vue'
 
   const header = ref('Shopping List App')
-  const characterCount = computed(()=>{
-    return newItem.value.length
+  const reversedItems = computed(()=>{
+    return [...items.value].reverse()
   })
   const editing = ref(false)
   const items = ref([
@@ -30,12 +30,23 @@
   const newItem = ref("")
   const newItemHighPriority = ref(false)
   const saveItem = () => {
-    items.value.push({id: items.value.length + 1, label: newItem.value})
+    items.value.push(
+      {
+        id: items.value.length + 1, 
+        label: newItem.value,
+        highPriority: newItemHighPriority.value
+      })
     newItem.value = ""
+    newItemHighPriority.value = ""
   }
   const doEdit = (e)=>{
     editing.value = e
     newItem.value = ""
+    newItemHighPriority.value = ""
+  }
+
+  const togglePurchased = (item) => {
+    item.purchased = !item.purchased
   }
 
 </script>
@@ -71,20 +82,18 @@
       Save Item
     </button>
   </form>
-  <p class="counter">
-    {{characterCount}}/200
-  </p>
   <ul>
     <li 
-      v-for="({id, label, purchased, highPriority}, index) in items" 
-      :key="id"
+      v-for="(item, index) in reversedItems" 
+      @click="togglePurchased(item)"
+      :key="item.id"
       class="static-class"
       :class="{
-      strikeout: purchased, 
-      priority: highPriority
+        strikeout: item.purchased, 
+        priority: item.highPriority,
       }"
     >
-      {{label}}
+      {{item.label}}
     </li>
   </ul>
   <p v-if="!items.length">
