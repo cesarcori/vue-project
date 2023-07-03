@@ -2,9 +2,7 @@
   import { ref, computed } from 'vue'
 
   const header = ref('Shopping List App')
-  const reversedItems = computed(()=>{
-    return [...items.value].reverse()
-  })
+  const reversedItems = computed(()=>[...items.value].reverse())
   const editing = ref(false)
   const items = ref([
     {
