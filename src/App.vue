@@ -1,7 +1,10 @@
 <script setup>
-  import { ref } from 'vue'
+  import { ref, computed } from 'vue'
 
   const header = ref('Shopping List App')
+  const characterCount = computed(()=>{
+    return newItem.value.length
+  })
   const editing = ref(false)
   const items = ref([
     {
@@ -68,6 +71,9 @@
       Save Item
     </button>
   </form>
+  <p class="counter">
+    {{characterCount}}/200
+  </p>
   <ul>
     <li 
       v-for="({id, label, purchased, highPriority}, index) in items" 
@@ -77,30 +83,6 @@
       strikeout: purchased, 
       priority: highPriority
       }"
-    >
-      {{label}}
-    </li>
-
-    <li 
-      v-for="({id, label, purchased, highPriority}, index) in items" 
-      :key="id"
-      class="static-class"
-      :class="[ 
-        purchased ? 'strikeout text-gray' : 'underline',
-        highPriority ? 'priority' : '' 
-      ]"
-    >
-      {{label}}
-    </li>
-
-    <li 
-      v-for="({id, label, purchased, highPriority}, index) in items" 
-      :key="id"
-      class="static-class"
-      :class="[ 
-        {strikeout: purchased},
-        {priority: highPriority}
-      ]"
     >
       {{label}}
     </li>
